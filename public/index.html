@@ -3,12 +3,100 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Par e Impar</title>
-  <link rel="stylesheet" href="./style.css">
+  <title>Juego Par e Impar</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
   <div id="app"></div>
-  <script src="/socket.io/socket.io.js"></script>
-  <script type="module" src="/src/app.js"></script>
+  
+  <!-- Mock data para simular el backend -->
+  <script>
+    // Simular API endpoints para GitHub Pages
+    window.mockAPI = {
+      players: {},
+      games: [],
+      
+      async register(name) {
+        if (this.players[name]) {
+          return { error: 'Player already exists' };
+        }
+        this.players[name] = { name, wins: 0 };
+        return { success: true };
+      },
+      
+      async getStats() {
+        return this.players;
+      },
+      
+      async saveGame(winner, players) {
+        if (this.players[winner]) {
+          this.players[winner].wins++;
+        }
+        this.games.push({ winner, players, date: new Date() });
+        return { success: true };
+      },
+      
+      async getHelp() {
+        return {
+          es: "Coloca tus números en el tablero para sumar 15 en línea. Impar empieza. Gana quien logre una línea de 15. Cada número solo puede usarse una vez. Si nadie logra 15, es empate.",
+          en: "Place your numbers on the board to sum 15 in a line. Odd starts. Win by making a line of 15. Each number can only be used once. If no one makes 15, it's a draw."
+        };
+      }
+    };
+    
+    // Mock fetch para GitHub Pages
+    const originalFetch = window.fetch;
+    window.fetch = function(url, options) {
+      if (url.startsWith('/api/')) {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            const endpoint = url.replace('/api/', '');
+            const data = options?.body ? JSON.parse(options.body) : {};
+            
+            switch (endpoint) {
+              case 'register':
+                const result = window.mockAPI.register(data.name);
+                resolve({
+                  ok: !result.error,
+                  json: () => Promise.resolve(result)
+                });
+                break;
+                
+              case 'stats':
+                resolve({
+                  ok: true,
+                  json: () => Promise.resolve(window.mockAPI.getStats())
+                });
+                break;
+                
+              case 'game':
+                window.mockAPI.saveGame(data.winner, data.players);
+                resolve({
+                  ok: true,
+                  json: () => Promise.resolve({ success: true })
+                });
+                break;
+                
+              case 'help':
+                resolve({
+                  ok: true,
+                  json: () => Promise.resolve(window.mockAPI.getHelp())
+                });
+                break;
+                
+              default:
+                resolve({
+                  ok: false,
+                  json: () => Promise.resolve({ error: 'Not found' })
+                });
+            }
+          }, 100);
+        });
+      }
+      return originalFetch(url, options);
+    };
+  </script>
+  
+  <script type="module" src="../src/app.js"></script>
 </body>
 </html>
