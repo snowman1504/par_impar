@@ -1,0 +1,124 @@
+{
+  "players": [
+    {
+      "name": "Hola"
+    },
+    {
+      "name": "Hola2"
+    },
+    {
+      "name": "person"
+    },
+    {
+      "name": "person2"
+    },
+    {
+      "name": "david"
+    }
+  ],
+  "games": [
+    {
+      "winner": "Hola2",
+      "players": [
+        "Hola",
+        "Hola2"
+      ],
+      "date": "2025-06-23T15:01:39.508Z"
+    },
+    {
+      "winner": "Hola",
+      "players": [
+        "Hola",
+        "Hola2"
+      ],
+      "date": "2025-06-23T15:14:00.456Z"
+    },
+    {
+      "winner": "Hola2",
+      "players": [
+        "Hola",
+        "Hola2"
+      ],
+      "date": "2025-06-28T15:35:44.404Z"
+    },
+    {
+      "winner": "Hola",
+      "players": [
+        "Hola",
+        "CPU"
+      ],
+      "date": "2025-06-28T15:38:59.663Z"
+    },
+    {
+      "winner": "CPU",
+      "players": [
+        "Hola",
+        "CPU"
+      ],
+      "date": "2025-06-28T15:41:58.533Z"
+    },
+    {
+      "winner": "Hola1",
+      "players": [
+        "Hola1",
+        "persona1"
+      ],
+      "date": "2025-06-28T15:43:15.917Z"
+    },
+    {
+      "winner": "CPU",
+      "players": [
+        "Hola",
+        "CPU"
+      ],
+      "date": "2025-06-28T15:45:05.548Z"
+    },
+    {
+      "winner": "Hola",
+      "players": [
+        "Hola",
+        "CPU"
+      ],
+      "date": "2025-06-28T15:45:48.746Z"
+    },
+    {
+      "winner": "Hola",
+      "players": [
+        "Hola",
+        "CPU"
+      ],
+      "date": "2025-06-28T15:46:30.979Z"
+    },
+    {
+      "winner": "person",
+      "players": [
+        "person",
+        "CPU"
+      ],
+      "date": "2025-06-29T03:39:32.555Z"
+    },
+    {
+      "winner": "CPU",
+      "players": [
+        "person",
+        "CPU"
+      ],
+      "date": "2025-06-29T03:40:01.583Z"
+    },
+    {
+      "winner": "CPU",
+      "players": [
+        "david",
+        "CPU"
+      ],
+      "date": "2025-06-29T03:52:41.226Z"
+    }
+  ],
+  "stats": {
+    "Hola": 4,
+    "Hola2": 2,
+    "person": 1,
+    "person2": 0,
+    "david": 0
+  }
+}
